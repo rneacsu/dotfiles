@@ -1,0 +1,6 @@
+{{- if eq .data.configType "work" }}
+[user]
+	name = Razvan Neacsu
+	email = {{ .data.workEmail }}
+	signingkey = {{ .data.workSignKey }}
+{{- end }}

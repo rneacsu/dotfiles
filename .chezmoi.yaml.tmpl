@@ -1,4 +1,10 @@
 {{- $configType := promptChoice "Choose the type of config" (list "personal" "work") -}}
 
+
 data:
     configType: {{ $configType | quote }}
+
+    {{- if eq $configType "work" }}
+    workEmail: {{ promptString "Enter work email" | quote }}
+    workSignKey: {{ promptString "Enter work sign key" | quote }}
+    {{- end }}

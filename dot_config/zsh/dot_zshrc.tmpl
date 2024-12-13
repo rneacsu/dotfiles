@@ -23,7 +23,7 @@ zpack omz plugins/docker-compose
 zpack omz plugins/kubectl
 zpack omz plugins/helm
 zpack omz plugins/golang
-#zpack omz plugins/azure
+zpack omz plugins/azure
 zpack omz plugins/gcloud
 zpack omz plugins/gpg-agent
 zpack omz plugins/terraform
@@ -37,7 +37,6 @@ zpack bundle exa
 zpack bundle fzf --preview --tab
 zpack bundle chezmoi
 zpack bundle zoxide --cmd cd
-zpack bundle delta
 zpack bundle lazygit
 zpack bundle k9s
 zpack release sxyazi/yazi
@@ -70,6 +69,5 @@ mysql_client_path="/opt/homebrew/opt/mysql-client@8.4/bin"
 [[ -d $mysql_client_path ]] && path+=($mysql_client_path)
 gobin_path=${GOBIN:-${GOPATH:-$HOME/go}/bin}
 [[ -d $gobin_path ]] && path+=($gobin_path)
-[[ -d $XDG_BIN_HOME ]] && path+=($XDG_BIN_HOME)
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 ulimit -n 2048

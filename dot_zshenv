@@ -10,6 +10,7 @@ export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 
 # Custom non-standard XDG variables
 export XDG_BIN_HOME="$XDG_DATA_HOME/bin"
+[[ -d $XDG_BIN_HOME ]] && path+=($XDG_BIN_HOME)
 
 # Change default config location for apps
 ZDOTDIR="$XDG_CONFIG_HOME/zsh"

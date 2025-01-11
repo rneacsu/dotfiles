@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Init zpack
-[[ -d "${ZDOTDIR:-$HOME}/.zpack" ]] || git clone https://github.com/rneacsu5/zpack.git "${ZDOTDIR:-$HOME}/.zpack"
+[[ -d "${ZDOTDIR:-$HOME}/.zpack" ]] || git clone https://github.com/rneacsu/zpack.git "${ZDOTDIR:-$HOME}/.zpack"
 source "${ZDOTDIR:-$HOME}/.zpack/zpack.zsh"
 
 # ohmyzsh libraries
@@ -29,7 +29,7 @@ zpack omz plugins/gpg-agent
 zpack omz plugins/terraform
 zpack omz plugins/virtualenvwrapper
 zpack omz plugins/dotenv
-zpack omz plugins/1password
+zpack omz plugins/nvm
 
 # Programs
 zpack bundle bat
@@ -54,7 +54,6 @@ zpack release stackrox/kube-linter        --completion 'kube-linter completion z
 {{- end }}
 
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
-[[ $+commands[boundary] == 1 ]] && complete -o nospace -C boundary boundary
 
 # zsh-users
 zpack bundle zsh-users

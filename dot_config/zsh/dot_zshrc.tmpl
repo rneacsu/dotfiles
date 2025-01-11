@@ -43,14 +43,15 @@ zpack release sxyazi/yazi
 
 {{- if eq .configType "work" }}
 zpack bundle plow
-zpack release vmware-tanzu/velero         --completion 'velero completion zsh > _velero'
 zpack release Azure/kubelogin             --completion 'kubelogin completion zsh > _kubelogin'
 zpack release doitintl/kube-no-trouble                                                                --name 'kubent'
 zpack release wagoodman/dive
 zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'                  --name 'flux'
-zpack release terrastruct/d2
 zpack release helm/chart-testing          --completion 'ct completion zsh > _ct'                      --name 'ct'
 zpack release stackrox/kube-linter        --completion 'kube-linter completion zsh > _kube-linter'
+{{- else }}
+zpack release bufbuild/buf                --completion 'buf completion zsh > _buf'
+zpack release k3d-io/k3d                  --completion 'k3d completion zsh > _k3d'
 {{- end }}
 
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
@@ -64,8 +65,6 @@ zpack bundle powerlevel10k
 zpack apply
 
 # Other configs
-mysql_client_path="/opt/homebrew/opt/mysql-client@8.4/bin"
-[[ -d $mysql_client_path ]] && path+=($mysql_client_path)
 gobin_path=${GOBIN:-${GOPATH:-$HOME/go}/bin}
 [[ -d $gobin_path ]] && path+=($gobin_path)
 export CLOUDSDK_PYTHON_SITEPACKAGES=1

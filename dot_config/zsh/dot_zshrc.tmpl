@@ -40,6 +40,7 @@ zpack bundle zoxide --cmd cd
 zpack bundle lazygit
 zpack bundle k9s
 zpack release sxyazi/yazi
+zpack release k3d-io/k3d                  --completion 'k3d completion zsh > _k3d'
 
 {{- if eq .configType "work" }}
 zpack bundle plow
@@ -49,9 +50,9 @@ zpack release wagoodman/dive
 zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'                  --name 'flux'
 zpack release helm/chart-testing          --completion 'ct completion zsh > _ct'                      --name 'ct'
 zpack release stackrox/kube-linter        --completion 'kube-linter completion zsh > _kube-linter'
+zpack release istio/istio -p '*istioctl*' --completion 'istioctl completion zsh > _istioctl'          --name 'istioctl'
 {{- else }}
 zpack release bufbuild/buf                --completion 'buf completion zsh > _buf'
-zpack release k3d-io/k3d                  --completion 'k3d completion zsh > _k3d'
 {{- end }}
 
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell

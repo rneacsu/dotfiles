@@ -19,9 +19,7 @@ zpack omz plugins/brew
 zpack omz plugins/git
 zpack omz plugins/sudo
 zpack omz plugins/kubectl
-zpack omz plugins/helm
 zpack omz plugins/golang
-zpack omz plugins/azure
 zpack omz plugins/gcloud
 zpack omz plugins/gpg-agent
 zpack omz plugins/terraform
@@ -38,25 +36,36 @@ zpack bundle lazygit
 zpack bundle k9s
 zpack release sxyazi/yazi
 
+# Completions
+zpack complete kubectl
+zpack complete helm -g
+
 {{- if eq .configType "work" }}
+
+# Work config
+zpack omz plugins/azure
 zpack omz plugins/podman
 
 zpack bundle plow
-zpack release Azure/kubelogin             --completion 'kubelogin completion zsh > _kubelogin'
-zpack release doitintl/kube-no-trouble                                                                --name 'kubent'
+zpack release Azure/kubelogin             --complete
+zpack release doitintl/kube-no-trouble               --name 'kubent'
 zpack release wagoodman/dive
-zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'                  --name 'flux'
-zpack release helm/chart-testing          --completion 'ct completion zsh > _ct'                      --name 'ct'
-zpack release stackrox/kube-linter        --completion 'kube-linter completion zsh > _kube-linter'
-zpack release istio/istio -p '*istioctl*' --completion 'istioctl completion zsh > _istioctl'          --name 'istioctl'
+zpack release fluxcd/flux2                --complete --name 'flux'
+zpack release helm/chart-testing          --complete --name 'ct'
+zpack release stackrox/kube-linter        --complete
+zpack release istio/istio -p '*istioctl*' --complete --name 'istioctl'
+
 {{- else }}
+
+# Personal config
 zpack omz plugins/docker
 zpack omz plugins/docker-compose
 zstyle ':omz:plugins:nvm' lazy yes
 zpack omz plugins/nvm
 
-zpack release k3d-io/k3d                  --completion 'k3d completion zsh > _k3d'
-zpack release bufbuild/buf                --completion 'buf completion zsh > _buf'
+zpack release k3d-io/k3d   --complete
+zpack release bufbuild/buf --complete
+
 {{- end }}
 
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell

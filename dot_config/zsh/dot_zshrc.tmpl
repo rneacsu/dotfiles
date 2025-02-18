@@ -63,8 +63,11 @@ zpack omz plugins/docker-compose
 zstyle ':omz:plugins:nvm' lazy yes
 zpack omz plugins/nvm
 
-zpack release k3d-io/k3d   --complete
-zpack release bufbuild/buf --complete
+zpack release sharkdp/fd
+zpack release BurntSushi/ripgrep    --complete 'rg --generate complete-zsh' --name 'rg'
+zpack release neovim/neovim         --pattern  '*.tar.gz'                   --name 'nvim'
+zpack release k3d-io/k3d            --complete
+zpack release bufbuild/buf          --complete
 
 {{- end }}
 
@@ -79,6 +82,10 @@ zpack bundle powerlevel10k
 zpack apply
 
 # Other configs
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey "^H" backward-kill-word
+
 gobin_path=${GOBIN:-${GOPATH:-$HOME/go}/bin}
 [[ -d $gobin_path ]] && path+=($gobin_path)
 export CLOUDSDK_PYTHON_SITEPACKAGES=1

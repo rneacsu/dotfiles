@@ -12,13 +12,12 @@ export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 export XDG_BIN_HOME="$XDG_DATA_HOME/bin"
 [[ -d $XDG_BIN_HOME ]] && path+=($XDG_BIN_HOME)
 
+# Mise-en-place config
+MISE_SHIMS_DIR="$XDG_DATA_HOME/mise/shims"
+[[ -d $MISE_SHIMS_DIR ]] && path+=($MISE_SHIMS_DIR)
+
 # Change default config location for apps
 ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export GOPATH="$XDG_DATA_HOME/go"
-export PIPX_HOME="$XDG_DATA_HOME/pipx"
-export PIPX_MAN_DIR="$XDG_DATA_HOME/man"
-export PIPX_BIN_DIR="$XDG_BIN_HOME"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
-export WORKON_HOME="$XDG_DATA_HOME/virtualenvs"
 export ANSIBLE_HOME="$XDG_DATA_HOME/ansible"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"

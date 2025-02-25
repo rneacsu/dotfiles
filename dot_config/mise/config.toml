@@ -1,8 +1,0 @@
-[tools]
-chezmoi = "latest"
-neovim = "latest"
-node = "lts"
-pnpm = "latest"
-usage = "latest"
-
-[settings]

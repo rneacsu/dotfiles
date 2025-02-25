@@ -26,45 +26,41 @@ zpack omz plugins/terraform
 zpack omz plugins/dotenv
 
 # Programs
-zpack bundle bat
-zpack bundle exa
 zpack bundle fzf --preview --tab
-zpack complete chezmoi --generate
-zpack bundle zoxide --cmd cd
-zpack bundle lazygit
-zpack bundle ripgrep
-zpack bundle fd
-zpack bundle k9s
-zpack release sxyazi/yazi
 
 # Completions
+zpack complete chezmoi -g
+zpack complete mise -g
 zpack complete kubectl
 zpack complete helm -g
+zpack complete k9s -g
+zpack complete bat -g 'bat --completion zsh'
+zpack snippet https://github.com/eza-community/eza/raw/refs/heads/main/completions/zsh/_eza
+zpack complete rg -g 'rg --generate complete-zsh'
+zpack snippet https://github.com/sharkdp/fd/raw/refs/heads/master/contrib/completion/_fd
 
-{{- if eq .configType "work" }}
+# Other
+alias lg='lazygit'
+export BAT_THEME="base16"
+eval "$(zoxide init --cmd cd zsh)"
 
-# Work config
-zpack omz plugins/azure
-zpack omz plugins/podman
-
-zpack bundle plow
-zpack release Azure/kubelogin             --complete
-zpack release doitintl/kube-no-trouble               --name 'kubent'
-zpack release wagoodman/dive
-zpack release fluxcd/flux2                --complete --name 'flux'
-zpack release helm/chart-testing          --complete --name 'ct'
-zpack release stackrox/kube-linter        --complete
-zpack release istio/istio -p '*istioctl*' --complete --name 'istioctl'
-
-{{- else }}
+{{- if eq .configType "personal" }}
 
 # Personal config
 zpack omz plugins/docker
 zpack omz plugins/docker-compose
 
-zpack bundle k3d
-zpack complete mise --generate
-zpack release bufbuild/buf          --complete
+zpack complete k3d -g
+zpack complete buf -g
+
+{{- else }}
+
+# Work config
+zpack omz plugins/azure
+zpack omz plugins/podman
+
+zpack complete kubelogin -g
+zpack complete istioctl -g
 
 {{- end }}
 

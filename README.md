@@ -5,7 +5,7 @@ Personal and work dotfiles setup using [chezmoi](https://www.chezmoi.io/) and [m
 To setup a new device, from the home directory run:
 
 ```shell
-sudo apt install zsh unzip
+sudo apt install zsh unzip git curl
 chsh -s /bin/zsh
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -18,4 +18,7 @@ path+=($XDG_BIN_HOME)
 
 curl https://mise.run | MISE_INSTALL_PATH=${XDG_BIN_HOME}/mise sh
 mise x chezmoi -- chezmoi init --apply rneacsu
+mise i
 ```
+
+Then restart the shell and you should be good to go.

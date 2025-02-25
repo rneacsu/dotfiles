@@ -1,0 +1,27 @@
+[tools]
+chezmoi = "latest"
+usage = "latest"
+zoxide = "latest"
+bat = "latest"
+eza = "latest"
+ripgrep = "latest"
+fd = "latest"
+lazygit = "latest"
+yazi = "latest"
+kubectl = "latest"
+helm = "latest"
+k9s = "latest"
+
+{{- if eq .configType "personal" }}
+neovim = "latest"
+node = "lts"
+pnpm = "latest"
+buf = "latest"
+k3d = "latest"
+{{- else }}
+vault = "latest"
+terraform = "latest"
+dive = "latest"
+azure-kubelogin = "latest"
+kubent = "latest"
+{{- end }}

@@ -62,7 +62,7 @@ zpack omz plugins/podman
 zpack complete kubelogin -g
 zpack complete istioctl -g
 
-[[ $+$commands[vault] == 1 ]] && complete -C vault vault
+[[ $+commands[vault] == 1 ]] && complete -C vault vault
 
 {{- end }}
 

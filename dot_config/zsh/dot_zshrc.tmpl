@@ -62,6 +62,8 @@ zpack omz plugins/podman
 zpack complete kubelogin -g
 zpack complete istioctl -g
 
+[[ $+$commands[vault] == 1 ]] && complete -C vault vault
+
 {{- end }}
 
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell

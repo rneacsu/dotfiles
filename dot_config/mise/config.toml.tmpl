@@ -18,6 +18,7 @@ node = "lts"
 pnpm = "latest"
 buf = "latest"
 k3d = "latest"
+go = "latest"
 {{- else }}
 vault = "latest"
 terraform = "latest"
@@ -26,4 +27,11 @@ azure-kubelogin = "latest"
 kubent = "latest"
 istioctl = "latest"
 tflint = "latest"
+{{- end }}
+
+[settings]
+{{- if eq .configType "personal" }}
+experimental = true
+{{- else }}
+
 {{- end }}

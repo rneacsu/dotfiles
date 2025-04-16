@@ -64,6 +64,10 @@ zpack complete istioctl -g
 
 [[ $+commands[vault] == 1 ]] && complete -C vault vault
 
+export MAMBA_ROOT_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/mamba"
+eval "$(micromamba shell hook --shell zsh)"
+alias mm='micromamba'
+
 {{- end }}
 
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell

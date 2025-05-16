@@ -1,0 +1,23 @@
+name: global
+dependencies:
+  - bat
+  - chezmoi
+  - dive
+  - eza
+  - fd-find
+  - k9s
+  - kubelogin
+  - kubernetes-client
+  - kubernetes-helm
+  - lazygit
+  - requests
+  - ripgrep
+  - terraform
+  - tflint
+  - vault
+  - yazi
+  - zoxide
+  - python
+  - go-jsonnet
+  - jsonnet-bundler
+  - grizzly

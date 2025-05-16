@@ -9,6 +9,13 @@ fi
 [[ -d "${ZDOTDIR:-$HOME}/.zpack" ]] || git clone https://github.com/rneacsu/zpack.git "${ZDOTDIR:-$HOME}/.zpack"
 source "${ZDOTDIR:-$HOME}/.zpack/zpack.zsh"
 
+{{- if eq .configType "work" }}
+export MAMBA_ROOT_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/mamba"
+eval "$(micromamba shell hook --shell zsh)"
+micromamba activate global
+alias mm='micromamba'
+{{- end }}
+
 # ohmyzsh libraries
 zpack bundle omz-lib
 
@@ -63,10 +70,6 @@ zpack complete kubelogin -g
 zpack complete istioctl -g
 
 [[ $+commands[vault] == 1 ]] && complete -C vault vault
-
-export MAMBA_ROOT_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/mamba"
-eval "$(micromamba shell hook --shell zsh)"
-alias mm='micromamba'
 
 {{- end }}
 

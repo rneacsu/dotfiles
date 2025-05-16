@@ -19,5 +19,6 @@ dependencies:
   - zoxide
   - python
   - go-jsonnet
+  - jsonnet-language-server
   - jsonnet-bundler
   - grizzly

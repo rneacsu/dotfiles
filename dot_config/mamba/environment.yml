@@ -1,5 +1,6 @@
 name: global
 dependencies:
+  - fzf
   - bat
   - chezmoi
   - dive

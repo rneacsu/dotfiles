@@ -1,5 +1,5 @@
-[tools]
 {{- if eq .configType "personal" }}
+[tools]
 chezmoi = "latest"
 usage = "latest"
 zoxide = "latest"
@@ -18,14 +18,8 @@ pnpm = "latest"
 buf = "latest"
 k3d = "latest"
 go = "latest"
-{{- else }}
-usage = "latest"
-kubent = "latest"
-{{- end }}
+yt-dlp = "latest"
 
 [settings]
-{{- if eq .configType "personal" }}
 experimental = true
-{{- else }}
-
 {{- end }}

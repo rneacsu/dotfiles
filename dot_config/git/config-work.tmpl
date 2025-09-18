@@ -1,6 +1,18 @@
 {{- if eq .configType "work" }}
 [user]
 	name = Razvan Neacsu
+
+	{{- if .workEmail }}
 	email = {{ .workEmail }}
+	{{- end }}
+
+	{{- if .workSignKey }}
 	signingkey = {{ .workSignKey }}
+	{{- end }}
+
+{{- if .workSignKey }}
+[commit]
+	gpgsign = true
+{{- end }}
+
 {{- end }}

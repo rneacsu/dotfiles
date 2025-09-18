@@ -17,6 +17,7 @@ dependencies:
   - tflint
   - vault
   - yazi
+  - yq
   - zoxide
   - python
   - go-jsonnet

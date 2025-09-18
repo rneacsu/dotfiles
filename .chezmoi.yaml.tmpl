@@ -5,6 +5,6 @@ data:
     configType: {{ $configType | quote }}
 
     {{- if eq $configType "work" }}
-    workEmail: {{ promptString "Enter work email" | quote }}
-    workSignKey: {{ promptString "Enter work sign key" | quote }}
+    workEmail: {{ promptString "Enter work email" "" | quote }}
+    workSignKey: {{ promptString "Enter work sign key" "" | quote }}
     {{- end }}

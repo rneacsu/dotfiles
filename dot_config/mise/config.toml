@@ -1,4 +1,3 @@
-{{- if eq .configType "personal" }}
 [tools]
 chezmoi = "latest"
 usage = "latest"
@@ -25,4 +24,3 @@ sops = "latest"
 
 [settings]
 experimental = true
-{{- end }}

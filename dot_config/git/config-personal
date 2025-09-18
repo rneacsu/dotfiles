@@ -2,3 +2,6 @@
 	name = Razvan Neacsu
 	email = razvan.neacsu5@gmail.com
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII4Yl6TrAZC9K9ykt0U0cFTVNVQALnawbE0QJOHqBhTA
+
+[commit]
+	gpgsign = true

@@ -30,6 +30,7 @@ zpack omz plugins/golang
 zpack omz plugins/gcloud
 zpack omz plugins/terraform
 zpack omz plugins/dotenv
+zpack omz plugins/podman
 
 # Programs
 zpack bundle fzf --preview --tab
@@ -52,7 +53,6 @@ eval "$(zoxide init --cmd cd zsh)"
 {{- if eq .configType "personal" }}
 
 # Personal config
-zpack omz plugins/docker
 zpack omz plugins/gpg-agent
 
 zpack complete mise -g
@@ -64,7 +64,6 @@ zpack complete flux -g
 
 # Work config
 zpack omz plugins/azure
-zpack omz plugins/podman
 
 zpack complete kubelogin -g
 zpack complete istioctl -g
@@ -88,5 +87,6 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^H" backward-kill-word
 
+export COLORTERM=truecolor
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 ulimit -n 2048

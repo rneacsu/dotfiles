@@ -1,6 +1,7 @@
 [tools]
 chezmoi = "latest"
 usage = "latest"
+fzf = "latest"
 zoxide = "latest"
 bat = "latest"
 eza = "latest"

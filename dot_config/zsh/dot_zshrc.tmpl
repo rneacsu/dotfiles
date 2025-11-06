@@ -64,9 +64,11 @@ zpack complete flux -g
 
 # Work config
 zpack omz plugins/azure
+zpack omz plugins/uv
 
 zpack complete kubelogin -g
 zpack complete istioctl -g
+zpack complete uv
 
 [[ $+commands[vault] == 1 ]] && complete -C vault vault
 

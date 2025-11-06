@@ -19,9 +19,11 @@ dependencies:
   - yazi
   - yq
   - zoxide
-  - python
+  - python=3.13
+  - nodejs
   - go-jsonnet
   - jsonnet-language-server
   - jsonnet-bundler
   - grizzly
   - kube-no-trouble
+  - uv

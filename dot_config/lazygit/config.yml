@@ -2,3 +2,6 @@ gui:
   theme:
     selectedLineBgColor:
       - reverse
+git:
+  pagers:
+    - pager: delta --dark --paging=never

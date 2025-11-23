@@ -1,14 +1,10 @@
-[includeIf "gitdir:~/personal/"]
-	path = ./config-personal
-[includeIf "gitdir:~/.config/local/share/chezmoi/"]
-	path = ./config-personal
-[includeIf "gitdir:~/.config/local/share/password-store/personal/"]
-	path = ./config-personal
-[includeIf "gitdir:~/.config/zsh/.zpack/"]
-	path = ./config-personal
+[user]
+	name = Razvan Neacsu
+	email = razvan.neacsu5@gmail.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII4Yl6TrAZC9K9ykt0U0cFTVNVQALnawbE0QJOHqBhTA
 
-[includeIf "gitdir:~/work/"]
-	path = ./config-work
+[commit]
+	gpgsign = true
 
 [pull]
 	rebase = true

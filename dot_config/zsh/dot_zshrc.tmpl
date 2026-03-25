@@ -1,21 +1,14 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Init zpack
 [[ -d "${ZDOTDIR:-$HOME}/.zpack" ]] || git clone https://github.com/rneacsu/zpack.git "${ZDOTDIR:-$HOME}/.zpack"
 source "${ZDOTDIR:-$HOME}/.zpack/zpack.zsh"
 
 # ohmyzsh libraries
-zpack bundle omz-lib
+zpack omz lib/history.zsh
+zpack omz lib/directories.zsh
+zpack omz lib/completion.zsh
+zpack omz lib/theme-and-appearance.zsh
 
 # ohmyzsh plugins
-{{- if eq .chezmoi.os "darwin" }}
-zpack omz plugins/brew
-{{- end }}
 zpack omz plugins/git
 zpack omz plugins/sudo
 zpack omz plugins/kubectl
@@ -25,8 +18,27 @@ zpack omz plugins/terraform
 zpack omz plugins/dotenv
 zpack omz plugins/podman
 
-# Programs
-zpack bundle fzf --preview --tab
+# fzf
+{
+  local fzf_preview_cmd fzf_tab_preview_cmd
+
+  fzf_preview_cmd="{ [[ -f {} ]] && bat -n --color=always {} } || { [[ -d {} ]] && eza --tree --icons=always --color=always -L 3 {} }"
+  fzf_tab_preview_cmd=${fzf_preview_cmd//\{\}/\$realpath}
+
+  export FZF_DEFAULT_OPTS="--prompt='~ ' --pointer='▶' --marker='✓' --color=16"
+  FZF_CTRL_T_OPTS="--height 80% --preview '$fzf_preview_cmd'"
+  FZF_ALT_C_OPTS="$FZF_CTRL_T_OPTS"
+
+  zpack load Aloxaf/fzf-tab
+  zstyle ':completion:*:descriptions' format '[%d]'
+  zstyle ':fzf-tab:*' use-fzf-default-opts yes
+  zstyle ':fzf-tab:complete:cd:*' fzf-preview $fzf_tab_preview_cmd
+  zstyle ':fzf-tab:complete:cd:*' fzf-min-height 20
+  zstyle ':fzf-tab:complete:ls:*' fzf-preview $fzf_tab_preview_cmd
+  zstyle ':fzf-tab:complete:ls:*' fzf-min-height 20
+
+  source <(fzf --zsh)
+}
 
 # Completions
 zpack complete chezmoi -g
@@ -34,7 +46,6 @@ zpack complete kubectl
 zpack complete helm -g
 zpack complete k9s -g
 zpack complete bat -g 'bat --completion zsh'
-zpack snippet https://github.com/eza-community/eza/raw/refs/heads/main/completions/zsh/_eza
 zpack complete rg -g 'rg --generate complete-zsh'
 zpack complete fd -g 'fd --gen-completions zsh'
 zpack complete task -g 'task --completion zsh'
@@ -53,12 +64,14 @@ zpack complete buf -g
 zpack complete flux -g
 
 # zsh-users
-zpack bundle zsh-users
-
-# Theme
-zpack bundle powerlevel10k
+zpack load zsh-users/zsh-autosuggestions
+zpack load zsh-users/zsh-completions
+zpack load zsh-users/zsh-syntax-highlighting
 
 zpack apply
+
+# oh-my-posh
+eval "$(oh-my-posh init zsh --config ${ZDOTDIR:-$HOME}/.omp.yaml)"
 
 # Other configs
 bindkey "^[[1;5C" forward-word
@@ -66,5 +79,3 @@ bindkey "^[[1;5D" backward-word
 bindkey "^H" backward-kill-word
 
 export COLORTERM=truecolor
-export CLOUDSDK_PYTHON_SITEPACKAGES=1
-ulimit -n 2048

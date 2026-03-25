@@ -1,0 +1,89 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+version: 4
+
+transient_prompt:
+  foreground: default
+  template: "❯ "
+
+secondary_prompt:
+  foreground: cyan
+  template: "❯ "
+
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: os
+        style: plain
+        foreground: default
+        template: "{{ .Icon }}  "
+      - type: path
+        style: plain
+        foreground: blue
+        template: "  {{ .Path }} "
+        options:
+          style: powerlevel
+          max_width: 120
+          display_root: true
+      - type: git
+        style: plain
+        foreground: green
+        template: "{{ .UpstreamIcon }}  {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if gt .StashCount 0 }}<green> *{{ .StashCount }}</>{{ end }}{{ if .Staging.Changed }}<yellow> {{ .Staging.String }}</>{{ end }}{{ if .Working.Changed }}<blue> {{ .Working.String }}</>{{ end }} "
+        options:
+          fetch_status: true
+          fetch_upstream_icon: true
+          branch_icon: " "
+  - type: prompt
+    alignment: right
+    filler: "<darkGray>·</>"
+    segments:
+      - type: status
+        style: plain
+        foreground: red
+        template: " ✘ {{ .String }} "
+      - type: executiontime
+        style: plain
+        foreground: yellow
+        template: "  {{ .FormattedMs }} "
+        options:
+          style: roundrock
+      - type: time
+        style: plain
+        foreground: cyan
+        options:
+          time_format: "15:04:05"
+        template: "   {{ .CurrentDate | date .Format }} "
+  - type: prompt
+    newline: true
+    alignment: left
+    segments:
+      - type: status
+        style: plain
+        foreground: green
+        foreground_templates:
+          - "{{ if .Error }}red{{ end }}"
+        template: "❯ "
+        options:
+          always_enabled: true
+
+tooltips:
+  - type: kubectl
+    style: plain
+    foreground: magenta
+    template: " 󱃾  {{ .Context }}{{ if .Namespace }} :: {{ .Namespace }}{{ end }} "
+    tips:
+      - k
+      - kcuc
+      - kubectl
+      - helm
+      - k9s
+      - flux
+  - type: terraform
+    style: plain
+    foreground: blue
+    template: "   {{ .WorkspaceName }} "
+    tips:
+      - terraform
+      - tf
+      - tfa
+      - tfp

@@ -1,0 +1,100 @@
+# Init zpack
+[[ -d "${ZDOTDIR:-$HOME}/.zpack" ]] || git clone https://github.com/rneacsu/zpack.git "${ZDOTDIR:-$HOME}/.zpack"
+source "${ZDOTDIR:-$HOME}/.zpack/zpack.zsh"
+
+# zsh
+HISTFILE="${ZDOTDIR:-$HOME}/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=10000
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt share_history
+
+setopt auto_cd
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
+
+WORDCHARS=''
+unsetopt menu_complete   # do not autoselect the first completion entry
+unsetopt flowcontrol
+setopt auto_menu         # show completion menu on successive tab press
+setopt complete_in_word
+setopt always_to_end
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' special-dirs true
+
+# ohmyzsh
+zpack omz plugins/sudo
+
+# fzf
+{
+  export FZF_DEFAULT_OPTS="--prompt='~ ' --pointer='▶' --marker='✓' --color=16"
+  FZF_CTRL_T_OPTS="--height 80% --preview '{ [[ -f {} ]] && bat -n --color=always {} } || { [[ -d {} ]] && eza --tree --icons=always --color=always -L 3 {} }'"
+  FZF_ALT_C_OPTS="$FZF_CTRL_T_OPTS"
+
+  source <(fzf --zsh)
+
+  zpack load Aloxaf/fzf-tab
+  zstyle ':completion:*:descriptions' format '[%d]'
+  zstyle ':fzf-tab:*' use-fzf-default-opts yes
+}
+
+# zoxide
+eval "$(zoxide init --cmd cd zsh)"
+
+# Completions
+zpack complete chezmoi -g
+zpack complete kubectl -g
+zpack complete helm -g
+zpack complete k9s -g
+zpack complete podman -g
+zpack complete bat -g 'bat --completion zsh'
+zpack complete rg -g 'rg --generate complete-zsh'
+zpack complete fd -g 'fd --gen-completions zsh'
+zpack complete task -g 'task --completion zsh'
+zpack complete mise -g
+zpack complete k3d -g
+zpack complete buf -g
+zpack complete flux -g
+[[ $+commands[terraform] == 1 ]] && complete -C terraform terraform
+
+# Aliases
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
+alias k='kubectl'
+alias kcuc='kubectl config use-context'
+alias tf='terraform'
+alias tfi='terraform init'
+alias tfiu='terraform init -upgrade'
+alias tfir='terraform init -reconfigure'
+alias tfv='terraform validate'
+alias tfp='terraform plan'
+alias tfa='terraform apply'
+alias tff='terraform fmt'
+alias tffr='terraform fmt -recursive'
+alias lg='lazygit'
+
+# zsh-users
+zpack load zsh-users/zsh-autosuggestions
+zpack load zsh-users/zsh-syntax-highlighting
+
+zpack apply
+
+# oh-my-posh
+eval "$(oh-my-posh init zsh --config ${ZDOTDIR:-$HOME}/.omp.yaml)"
+
+# Other configs
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey "^H" backward-kill-word
+
+export COLORTERM="truecolor"
+export BAT_THEME="base16"
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"

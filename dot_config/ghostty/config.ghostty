@@ -1,0 +1,13 @@
+theme = dark:Catppuccin Mocha,light:Catppuccin Latte
+
+font-family = "JetBrainsMono Nerd Font"
+font-size = 14
+font-thicken = true
+
+window-padding-x = 10
+window-padding-y = 10
+
+background-opacity = 0.85
+background-blur = macos-glass-clear
+
+right-click-action = copy-or-paste

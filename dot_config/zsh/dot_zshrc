@@ -30,6 +30,8 @@ zstyle ':completion:*' special-dirs true
 
 # ohmyzsh
 zpack omz plugins/sudo
+zpack omz plugins/brew
+zpack omz plugins/gpg-agent
 
 # fzf
 {

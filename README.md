@@ -22,3 +22,12 @@ mise i
 ```
 
 Then restart the shell and you should be good to go.
+
+## GPG on MacOS
+
+To use the `gpg --card-status` and `gpg --card-edit` commands, add the following to `scdaemon.conf`:
+
+```
+pcsc-shared
+```
+This disables the pin and password caching, so make sure to remove the option once you are done using the commands.

@@ -31,3 +31,11 @@ To use the `gpg --card-status` and `gpg --card-edit` commands, add the following
 pcsc-shared
 ```
 This disables the pin and password caching, so make sure to remove the option once you are done using the commands.
+
+In case the card is not detected, try the following:
+
+```shell
+gpgconf --kill scdaemon
+gpgconf --kill gpg-agent
+pcsctest
+```

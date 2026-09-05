@@ -11,3 +11,13 @@ background-opacity = 0.85
 background-blur = macos-glass-clear
 
 right-click-action = copy-or-paste
+
+keybind = super+ctrl+arrow_down=resize_split:down,20
+keybind = super+ctrl+arrow_left=resize_split:left,20
+keybind = super+ctrl+arrow_right=resize_split:right,20
+keybind = super+ctrl+arrow_up=resize_split:up,20
+
+keybind = super+[=previous_tab
+keybind = super+]=next_tab
+keybind = super+shift+[=move_tab:-1
+keybind = super+shift+]=move_tab:1

@@ -30,8 +30,6 @@ blocks:
         foreground: green
         template: "{{ .UpstreamIcon }}  {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if gt .StashCount 0 }}<green> *{{ .StashCount }}</>{{ end }}{{ if .Staging.Changed }}<yellow> {{ .Staging.String }}</>{{ end }}{{ if .Working.Changed }}<blue> {{ .Working.String }}</>{{ end }} "
         options:
-          fetch_status: true
-          fetch_upstream_icon: true
           branch_icon: " "
   - type: prompt
     alignment: right

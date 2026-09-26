@@ -70,6 +70,8 @@ zpack complete k3d -g
 zpack complete buf -g
 zpack complete flux -g
 zpack complete sops -g
+zpack complete pnpm -g
+zpack complete npm -g
 [[ $+commands[terraform] == 1 ]] && complete -C terraform terraform
 
 # Aliases
